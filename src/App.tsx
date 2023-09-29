@@ -1,8 +1,17 @@
 import { useState } from 'react';
-import { PrimaryButton } from './components/Buttons/PrimaryButton';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import GlobalStyle from './styles/global';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import light from './styles/themes/light';
+
+import Home from './pages/Home';
+import SignIn from './pages/SignIn/SignIn';
+
+const router = createBrowserRouter([
+	{ path: '/', element: <Home /> },
+	{ path: '/signin', element: <SignIn /> }
+]);
 
 function App() {
 	const [theme, ] = useState<DefaultTheme>(light);
@@ -10,7 +19,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
 			<GlobalStyle />
-      <PrimaryButton>Teste</PrimaryButton>
+			<RouterProvider router={router} />
 		</ThemeProvider>
   )
 }
