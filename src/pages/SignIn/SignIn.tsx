@@ -1,23 +1,32 @@
-import { PrimaryButton } from "../../components/Buttons/PrimaryButton";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInStyle } from "./style";
+import { Login, signin } from "../../services/user";
 
 function SignIn() {
+	const { register, handleSubmit } = useForm<Login>();
+
+	const submit: SubmitHandler<Login> = (user: Login) => {
+		signin(user).then((res) => {
+			console.log({res})
+		});
+	};
+
 	return (
 		<SignInStyle>
 			<h1>Welcome back to Radião</h1>
 
-			<form>
+			<form onSubmit={handleSubmit(submit)}>
 				<label>
 					Email
-					<input type="email" placeholder="email" />
+					<input {...register('email')} type="email" placeholder="email" />
 				</label>
 
 				<label>
 					Password
-					<input type="password" placeholder="your-password-here" />
+					<input {...register('password')} type="password" placeholder="your-password-here" />
 				</label>
 
-				<PrimaryButton> aisuydgausydg </PrimaryButton>
+				<button type="submit"> signin </button>
 			</form>
 		</SignInStyle>
 	)
