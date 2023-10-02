@@ -1,13 +1,21 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInStyle } from "./style";
 import { Login, signin } from "../../services/user";
+import { setitem } from "../../helpers/localStorage";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
 	const { register, handleSubmit, formState, setError } = useForm<Login>();
 
+	const navigate = useNavigate();
+
 	const submit: SubmitHandler<Login> = (user: Login) => {
 		signin(user).then((res) => {
-			console.log({res})
+			// TODO: fix this double data
+			const { data } = res;
+			const { data: newData } = data;
+			setitem('token', newData.token);
+			navigate('/');
 		})
 		.catch((err) => {
 			const { response } = err;

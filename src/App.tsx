@@ -5,7 +5,7 @@ import GlobalStyle from './styles/global';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import light from './styles/themes/light';
 
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 
