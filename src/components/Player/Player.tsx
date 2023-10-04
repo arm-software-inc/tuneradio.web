@@ -1,17 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { PlayerStyle } from "./style";
+import { PlayerState } from "./types";
 
 function Player() {
 	const { station } = useContext(PlayerContext);
 
 	const audio = React.useRef<HTMLAudioElement>(null);
 
+	const [playerState, setPlayerState] = useState<PlayerState>('paused');
+
 	const toggleState = (): void => {
 		if (!audio.current) return;
 
 		if (audio.current.paused) audio.current.play();
 		else audio.current.pause();
+
+		setPlayerState(audio.current.paused ? 'paused' : 'playing');
 	};
 
 	return station ? (
@@ -30,7 +35,11 @@ function Player() {
 			</button>
 
 			<button type="button" onClick={toggleState}>
-				<div className="play-button"></div>
+				{
+					playerState === 'paused'
+					? <img src="/icons/play.svg" alt="play button" />
+					: <img src="/icons/pause.svg" alt="pause button" />
+				}
 			</button>
 
 			<audio src={station.url} ref={audio}></audio>

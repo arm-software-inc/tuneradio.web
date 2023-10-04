@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const PlayerStyle = styled.div`
+	background: ${(props) => props.theme.colors.white};
+
 	position: fixed;
 	margin: 0 auto;
 	bottom: 0;
@@ -12,12 +14,5 @@ export const PlayerStyle = styled.div`
 	.logo img {
 		width: 100%;
 		height: 100%;
-	}
-
-	.play-button {
-		width: 20px;
-		height: 20px;
-		background: black;
-		clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
 	}
 `;
