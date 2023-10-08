@@ -29,6 +29,14 @@ function SignIn() {
 
 	return (
 		<SignInStyle>
+			<section className="logo">
+				<img src="/logo.svg" alt="Radiao logo" />
+
+				<div>
+					<h1>radião</h1>
+				</div>
+			</section>
+
 			<h1>Welcome back to Radião</h1>
 
 			<form onSubmit={handleSubmit(submit)}>

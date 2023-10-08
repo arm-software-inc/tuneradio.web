@@ -3,7 +3,7 @@ export default {
 
 	colors: {
 		purple: '#8065B9',
-		yellow: '#F8EB96',
+		yellow: '#FFE53C',
 		white: '#FFFFFF',
 		black: '#0D0C0C',
 		offWhite: '#F1F1F1',
