@@ -7,7 +7,7 @@ export const SignInStyle = styled.main`
 	justify-content: center;
 
 	height: 100vh;
-	gap: 3rem;
+	gap: 2rem;
 
 	.logo {
 		width: 100%;
@@ -47,12 +47,15 @@ export const SignInStyle = styled.main`
 	}
 
 	form {
+		width: 100%;
+
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-around;
 
 		gap: 2rem;
+		padding: 0 2rem;
 
 		input {
 			display: block;

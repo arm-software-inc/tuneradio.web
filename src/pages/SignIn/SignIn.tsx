@@ -3,6 +3,7 @@ import { SignInStyle } from "./style";
 import { Login, signin } from "../../services/user";
 import { setitem } from "../../helpers/localStorage";
 import { useNavigate } from "react-router-dom";
+import Input from "../../components/Input/Input";
 
 function SignIn() {
 	const { register, handleSubmit, formState, setError } = useForm<Login>();
@@ -37,20 +38,28 @@ function SignIn() {
 				</div>
 			</section>
 
-			<h1>Welcome back to Radião</h1>
-
 			<form onSubmit={handleSubmit(submit)}>
-				<label>
-					Email
-					<input {...register('email', { required: 'email cannot be empty' })} type="email" placeholder="email" />
-					{ formState.errors?.email && <span>{formState.errors.email.message}</span> }
-				</label>
+				<Input
+					label="Email"
+					formName="email"
+					register={register}
+					required="email cannot be empty"
+					type="email"
+					placeholder="example@mail.com"
+				/>
 
-				<label>
-					Password
-					<input {...register('password', { required: 'password cannot be empty' })} type="password" placeholder="your-password-here" />
-					{ formState.errors?.password && <span>{formState.errors.password.message}</span> }
-				</label>
+				{ formState.errors?.email && <span>{formState.errors.email.message}</span> }
+
+				<Input
+					label="Password"
+					formName="password"
+					register={register}
+					required="password cannot be empty"
+					type="password"
+					placeholder="your-password"
+				/>
+
+				{ formState.errors?.password && <span>{formState.errors.password.message}</span> }
 
 				<button type="submit"> signin </button>
 			</form>
