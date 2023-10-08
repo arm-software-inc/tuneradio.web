@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const CardStyle = styled.div`
+	width: 100%;
 	position: relative;
 
 	&::after {
@@ -24,5 +25,8 @@ export const CardStyle = styled.div`
 		height: 100%;
 		border: 2px solid ${(props) => props.theme.colors.black};
 		border-radius: 1rem;
+
+		/* for those images that does not have a background */
+		background: ${(props) => props.theme.colors.white};
 	}
 `;

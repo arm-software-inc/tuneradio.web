@@ -4,7 +4,7 @@ import { CardStyle } from "./style";
 function Card({ station }: { station: Station }) {
 	return (
 		<CardStyle>
-			<img src={station.favicon} alt={`${station.name} logo`} />
+			<img src={station.favicon || '/missing-radio.jpeg'} alt={`${station.name} logo`} />
 		</CardStyle>
 	)
 }
