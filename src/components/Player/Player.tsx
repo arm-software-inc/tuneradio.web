@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { PlayerStyle } from "./style";
 import { PlayerState } from "./types";
@@ -19,6 +19,10 @@ function Player() {
 
 		setPlayerState(audio.current.paused ? 'paused' : 'playing');
 	};
+
+	useEffect(() => {
+		if (audio.current) audio.current.play();
+	}, [station]);
 
 	return station ? (
 		<PlayerStyle>

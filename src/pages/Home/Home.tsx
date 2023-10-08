@@ -14,8 +14,6 @@ function Home() {
 
 	useEffect(() => {
 		getTrendingStations().then((res) => {
-			// console.log(res)
-
 			// TODO: change this to the last played station
 			setStation(res[0]);
 			setStations(res);
@@ -30,7 +28,7 @@ function Home() {
 				<Carousel>
 					{ stations.map((station) => (
 						<React.Fragment key={station.stationUuid}>
-							<Card station={station} />
+							<Card station={station} setStation={setStation} />
 							<p>{station.name}</p>
 						</React.Fragment>
 					)) }

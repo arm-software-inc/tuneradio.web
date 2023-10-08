@@ -1,9 +1,14 @@
 import { Station } from "../../services/station";
 import { CardStyle } from "./style";
 
-function Card({ station }: { station: Station }) {
+interface Props {
+	station: Station;
+	setStation: (station: Station) => void;
+}
+
+function Card({ station, setStation }: Props) {
 	return (
-		<CardStyle>
+		<CardStyle onClick={() => {setStation(station)}}>
 			<img src={station.favicon || '/missing-radio.jpeg'} alt={`${station.name} logo`} />
 		</CardStyle>
 	)
