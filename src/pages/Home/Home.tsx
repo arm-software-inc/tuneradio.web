@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Station, getTrendingStations } from "../../services/station";
-import StationCard from "../../components/StationCard";
+// import StationCard from "../../components/StationCard";
 import Player from "../../components/Player/Player";
 import { PlayerContext } from "../../contexts/PlayerContext";
+import { HomeStyle } from "./style";
 
 function Home() {
 	const [stations, setStations] = useState<Station[]>([]);
@@ -18,7 +19,7 @@ function Home() {
 	}, [setStation]);
 
 	return (
-		<div>
+		<HomeStyle>
 			<h1>Welcome to Radião</h1>
 
 			<section>
@@ -30,7 +31,7 @@ function Home() {
 			</section>
 
 			<Player />
-		</div>
+		</HomeStyle>
 	)
 }
 
