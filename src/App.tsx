@@ -8,9 +8,10 @@ import light from './styles/themes/light';
 import Home from './pages/Home/Home';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
+import { PlayerProvider } from './contexts/PlayerContext';
 
 
-// TODOL create a router file
+// TODO: create a router file
 const router = createBrowserRouter([
 	{ path: '/', element: <Home /> },
 	{ path: '/signin', element: <SignIn /> },
@@ -22,8 +23,10 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-			<GlobalStyle />
-			<RouterProvider router={router} />
+			<PlayerProvider>
+				<GlobalStyle />
+				<RouterProvider router={router} />
+			</PlayerProvider>
 		</ThemeProvider>
   )
 }
