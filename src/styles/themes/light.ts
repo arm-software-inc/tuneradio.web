@@ -2,7 +2,7 @@ export default {
 	title: 'light',
 
 	colors: {
-		purple: '#8065B9',
+		purple: '#A466FF',
 		yellow: '#FFE53C',
 		white: '#FFFFFF',
 		black: '#0D0C0C',
