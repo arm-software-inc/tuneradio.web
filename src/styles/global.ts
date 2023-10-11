@@ -8,6 +8,7 @@ export default createGlobalStyle`
 	}
 
 	body {
+		background: #FFFCE2;
 		font-family: 'Inter', sans-serif;
 	}
 `;
