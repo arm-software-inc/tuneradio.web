@@ -65,4 +65,9 @@ export const SignInStyle = styled.main`
 			width: 100%;
 		}
 	}
+
+	.google-button, .apple-button {
+		display: flex;
+		align-items: center;
+	}
 `;

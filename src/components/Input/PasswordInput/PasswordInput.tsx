@@ -1,23 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactSVG } from "react-svg";
+import Input, { InputProps } from "../Input";
+import { useState } from "react";
 
-import { UseFormRegister } from "react-hook-form";
-import { PasswordInputStyle } from "./style";
+interface Props extends InputProps {}
 
-interface Props {
-	label: string;
-	formName: string;
-	required?: string;
-	type: 'email' | 'text' | 'password';
-	placeholder: string;
-	register: UseFormRegister<any>;
-}
+function PasswordInput({ ...props }: Props) {
+	const [seePassword, setSeePassword] = useState(false);
 
-function PasswordInput({ label, formName, required, type, placeholder, register }: Props) {
 	return (
-		<PasswordInputStyle>
-			{label}
-			<input { ...register(formName, { required }) } type={type} placeholder={placeholder} />
-		</PasswordInputStyle>
+		<Input {...props} type={seePassword ? 'text' : 'password'}>
+			<button type="button" onClick={() => setSeePassword(!seePassword)}>
+				{ seePassword ?  <ReactSVG src="/eye-closed.svg"  /> : <ReactSVG src="/eye.svg"  /> }
+			</button>
+		</Input>
 	)
 }
 

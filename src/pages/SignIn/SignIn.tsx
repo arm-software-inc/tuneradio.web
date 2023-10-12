@@ -1,9 +1,13 @@
+import { ReactSVG } from 'react-svg';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInStyle } from "./style";
 import { Login, signin } from "../../services/user";
 import { setitem } from "../../helpers/localStorage";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
+import PasswordInput from "../../components/Input/PasswordInput/PasswordInput";
+import Button from "../../components/Buttons/Button";
+
 
 function SignIn() {
 	const { register, handleSubmit, formState, setError } = useForm<Login>();
@@ -50,7 +54,7 @@ function SignIn() {
 
 				{ formState.errors?.email && <span>{formState.errors.email.message}</span> }
 
-				<Input
+				<PasswordInput
 					label="Password"
 					formName="password"
 					register={register}
@@ -61,7 +65,21 @@ function SignIn() {
 
 				{ formState.errors?.password && <span>{formState.errors.password.message}</span> }
 
-				<button type="submit"> signin </button>
+				<Button type="submit">Sign In</Button>
+
+				<Button type="button" color='white'>
+					<p className='google-button'>
+						<ReactSVG src='/google.svg' />
+						Sign In with Google
+					</p>
+				</Button>
+
+				<Button type="button" color="black">
+					<p className='apple-button'>
+						<ReactSVG src='apple.svg' />
+						Sign In with Apple ID
+					</p>
+				</Button>
 			</form>
 		</SignInStyle>
 	)
