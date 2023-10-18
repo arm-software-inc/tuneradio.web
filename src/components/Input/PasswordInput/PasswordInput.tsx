@@ -1,4 +1,5 @@
-import { ReactSVG } from "react-svg";
+import { EyeSvg } from "../../icons/eye";
+import { EyeClosedSvg } from "../../icons/eyeClosed";
 import Input, { InputProps } from "../Input";
 import { useState } from "react";
 
@@ -10,7 +11,7 @@ function PasswordInput({ ...props }: Props) {
 	return (
 		<Input {...props} type={seePassword ? 'text' : 'password'}>
 			<button type="button" onClick={() => setSeePassword(!seePassword)}>
-				{ seePassword ?  <ReactSVG src="/eye-closed.svg"  /> : <ReactSVG src="/eye.svg"  /> }
+				{ seePassword ?  <EyeClosedSvg /> : <EyeSvg /> }
 			</button>
 		</Input>
 	)

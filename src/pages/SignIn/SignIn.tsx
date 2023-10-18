@@ -1,12 +1,13 @@
-import { ReactSVG } from 'react-svg';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInStyle } from "./style";
 import { Login, signin } from "../../services/user";
 import { setitem } from "../../helpers/localStorage";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import PasswordInput from "../../components/Input/PasswordInput/PasswordInput";
 import Button from "../../components/Buttons/Button";
+import { GoogleSvg } from "../../components/icons/google";
+import { LogoSvg } from "../../components/icons/logo";
 
 
 function SignIn() {
@@ -35,7 +36,7 @@ function SignIn() {
 	return (
 		<SignInStyle>
 			<section className="logo">
-				<img src="/logo.svg" alt="Radiao logo" />
+				<LogoSvg />
 
 				<div>
 					<h1>radião</h1>
@@ -65,22 +66,34 @@ function SignIn() {
 
 				{ formState.errors?.password && <span>{formState.errors.password.message}</span> }
 
+				<label className="remember-me">
+					<input type="checkbox" />
+					Remember me
+				</label>
+
 				<Button type="submit">Sign In</Button>
 
 				<Button type="button" color='white'>
 					<p className='google-button'>
-						<ReactSVG src='/google.svg' />
+						<GoogleSvg />
 						Sign In with Google
 					</p>
 				</Button>
 
-				<Button type="button" color="black">
+				{/* <Button type="button" color="black">
 					<p className='apple-button'>
-						<ReactSVG src='apple.svg' />
+						<AppleSvg />
 						Sign In with Apple ID
 					</p>
-				</Button>
+				</Button> */}
 			</form>
+
+			<footer className="helpful-links">
+				<hr className="separator" />
+
+				<Link to="/signup">Dont have an account? Sign up</Link>
+				<Link to="/forgot-password">Forgot your password?</Link>
+			</footer>
 		</SignInStyle>
 	)
 }
