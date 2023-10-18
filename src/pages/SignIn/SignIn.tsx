@@ -2,7 +2,13 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInStyle } from "./style";
 import { Login, signin } from "../../services/user";
 import { setitem } from "../../helpers/localStorage";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Input from "../../components/Input/Input";
+import PasswordInput from "../../components/Input/PasswordInput/PasswordInput";
+import Button from "../../components/Buttons/Button";
+import { GoogleSvg } from "../../components/icons/google";
+import { LogoSvg } from "../../components/icons/logo";
+
 
 function SignIn() {
 	const { register, handleSubmit, formState, setError } = useForm<Login>();
@@ -29,23 +35,65 @@ function SignIn() {
 
 	return (
 		<SignInStyle>
-			<h1>Welcome back to Radião</h1>
+			<section className="logo">
+				<LogoSvg />
+
+				<div>
+					<h1>radião</h1>
+				</div>
+			</section>
 
 			<form onSubmit={handleSubmit(submit)}>
-				<label>
-					Email
-					<input {...register('email', { required: 'email cannot be empty' })} type="email" placeholder="email" />
-					{ formState.errors?.email && <span>{formState.errors.email.message}</span> }
+				<Input
+					label="Email"
+					formName="email"
+					register={register}
+					required="email cannot be empty"
+					type="email"
+					placeholder="example@mail.com"
+				/>
+
+				{ formState.errors?.email && <span>{formState.errors.email.message}</span> }
+
+				<PasswordInput
+					label="Password"
+					formName="password"
+					register={register}
+					required="password cannot be empty"
+					type="password"
+					placeholder="your-password"
+				/>
+
+				{ formState.errors?.password && <span>{formState.errors.password.message}</span> }
+
+				<label className="remember-me">
+					<input type="checkbox" />
+					Remember me
 				</label>
 
-				<label>
-					Password
-					<input {...register('password', { required: 'password cannot be empty' })} type="password" placeholder="your-password-here" />
-					{ formState.errors?.password && <span>{formState.errors.password.message}</span> }
-				</label>
+				<Button type="submit">Sign In</Button>
 
-				<button type="submit"> signin </button>
+				<Button type="button" color='white'>
+					<p className='google-button'>
+						<GoogleSvg />
+						Sign In with Google
+					</p>
+				</Button>
+
+				{/* <Button type="button" color="black">
+					<p className='apple-button'>
+						<AppleSvg />
+						Sign In with Apple ID
+					</p>
+				</Button> */}
 			</form>
+
+			<footer className="helpful-links">
+				<hr className="separator" />
+
+				<Link to="/signup">Dont have an account? Sign up</Link>
+				<Link to="/forgot-password">Forgot your password?</Link>
+			</footer>
 		</SignInStyle>
 	)
 }
