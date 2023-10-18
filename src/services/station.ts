@@ -4,6 +4,7 @@ export interface Station {
 	changeUuid: string;
 	stationUuid: string;
 	name: string;
+	url: string;
 	urlResolved: string;
 	homepage: string;
 	favicon: string;
@@ -19,7 +20,8 @@ export const getAllStations = async (): Promise<Station[]> => {
 };
 
 export const getTrendingStations = async (): Promise<Station[]> => {
-	return await API.get('/station/trending');
+	const response = await API.get('/station/trending');
+	return response.data.data;
 };
 
 export const getPopularStations = async (): Promise<Station[]> => {
