@@ -8,6 +8,7 @@ import PasswordInput from "../../components/Input/PasswordInput/PasswordInput";
 import Button from "../../components/Buttons/Button";
 import { GoogleSvg } from "../../components/icons/google";
 import { LogoSvg } from "../../components/icons/logo";
+import { useGoogleLogin } from "@react-oauth/google";
 
 
 function SignIn() {
@@ -32,6 +33,11 @@ function SignIn() {
 			});
 		})
 	};
+
+	const loginWithGoogle = useGoogleLogin({
+		onSuccess: tokenResponse => console.log(tokenResponse),
+		onError: error => console.log(error)
+	});
 
 	return (
 		<SignInStyle>
@@ -73,7 +79,7 @@ function SignIn() {
 
 				<Button type="submit">Sign In</Button>
 
-				<Button type="button" color='white'>
+				<Button type="button" color='white' onClick={() => loginWithGoogle()}>
 					<p className='google-button'>
 						<GoogleSvg />
 						Sign In with Google
