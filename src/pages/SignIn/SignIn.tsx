@@ -1,14 +1,15 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SignInStyle } from "./style";
-import { Login, signin } from "../../services/user";
+import { Login, signin, signinWithGoogle } from "../../services/user";
 import { setitem } from "../../helpers/localStorage";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import PasswordInput from "../../components/Input/PasswordInput/PasswordInput";
 import Button from "../../components/Buttons/Button";
 import { GoogleSvg } from "../../components/icons/google";
 import { LogoSvg } from "../../components/icons/logo";
 import { useGoogleLogin } from "@react-oauth/google";
+import { useEffect } from "react";
 
 
 function SignIn() {
@@ -16,14 +17,13 @@ function SignIn() {
 
 	const navigate = useNavigate();
 
+	const location = useLocation();
+
+	const googleLoginRedirectUrl = import.meta.env.VITE_GOOLE_REDIRECT_URL;
+
 	const submit: SubmitHandler<Login> = (user: Login) => {
-		signin(user).then((res) => {
-			// TODO: fix this double data
-			const { data } = res;
-			const { data: newData } = data;
-			setitem('token', newData.token);
-			navigate('/');
-		})
+		signin(user)
+		.then((res) => createSession(res))
 		.catch((err) => {
 			const { response } = err;
 			const { data }: { data: { success: boolean, errors: string[] } } = response;
@@ -34,10 +34,27 @@ function SignIn() {
 		})
 	};
 
-	const loginWithGoogle = useGoogleLogin({
-		onSuccess: tokenResponse => console.log(tokenResponse),
-		onError: error => console.log(error)
+	const googleButtonHandler = useGoogleLogin({
+		flow: "auth-code",
+		ux_mode: "redirect",
+		redirect_uri: googleLoginRedirectUrl
 	});
+
+	const createSession: any = (loginResponse: any) => {
+		const { data } = loginResponse;
+		
+		setitem('token', data.token);
+		navigate('/');
+	}
+
+	useEffect(() => {		
+		const googleSignInCode = new URLSearchParams(location.search).get("code");
+
+		if (googleSignInCode) {
+			signinWithGoogle(googleSignInCode)
+			.then((res) => createSession(res));
+		}
+	}, [signinWithGoogle]);
 
 	return (
 		<SignInStyle>
@@ -79,7 +96,7 @@ function SignIn() {
 
 				<Button type="submit">Sign In</Button>
 
-				<Button type="button" color='white' onClick={() => loginWithGoogle()}>
+				<Button type="button" color='white' onClick={() => googleButtonHandler()}>
 					<p className='google-button'>
 						<GoogleSvg />
 						Sign In with Google
