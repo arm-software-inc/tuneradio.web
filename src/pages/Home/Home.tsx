@@ -34,7 +34,7 @@ function Home() {
 			<section className="trending">
 				<h2>Trending</h2>
 
-				<Carousel>
+				<Carousel numberTotalItems={stations.length}>
 					{ stations.map((station) => (
 						<React.Fragment key={station.stationUuid}>
 							<Card station={station} setStation={setStation} />

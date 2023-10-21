@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardStyle = styled.div`
-	width: clamp(5rem, 100%, 10rem);
+	width: clamp(5rem, 10rem, 12rem);
 	position: relative;
 
 	&::after {
