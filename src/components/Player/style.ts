@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PlayerStyle = styled.div`
-	position: fixed;
+	position: sticky;
 	bottom: 1rem;
 	right: 1rem;
 	left: 1rem;

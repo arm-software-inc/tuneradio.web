@@ -11,9 +11,8 @@ export const HomeStyle = styled.main`
 
 	.tags {
 		display: grid;
-		gap: 1rem
-		;
+		gap: 1rem;
 		grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-
+		padding-bottom: 2rem;
 	}
 `;

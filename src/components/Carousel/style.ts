@@ -7,6 +7,7 @@ export const CarouselStyle = styled.div`
 		display: grid;
 		align-items: center;
 		gap: 1rem;
+		grid-auto-flow: column;
 		grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 		min-height: 12.5rem;
 	}
