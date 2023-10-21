@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const PlayerStyle = styled.div`
-	/* TODO: try to improve this */
 	position: fixed;
 	bottom: 1rem;
 	right: 1rem;

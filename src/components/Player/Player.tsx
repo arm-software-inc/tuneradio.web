@@ -21,14 +21,17 @@ function Player() {
 	};
 
 	useEffect(() => {
-		if (audio.current) audio.current.play();
+		if (audio.current) {
+			toggleState();
+			audio.current.play();
+		}
 	}, [station]);
 
 	return station ? (
 		<PlayerStyle>
 			<div className="container">
 				<div className="logo">
-					<img src={station.favicon} alt={`${station.name} logo`} />
+					<img src={station.favicon === '' ? '/missing-radio.jpeg' : station.favicon} alt={`${station.name} logo`} />
 				</div>
 
 				<section className="info">
@@ -37,7 +40,8 @@ function Player() {
 						<ReactCountryFlag countryCode={station.countryCode} style={{ fontSize: '1rem' }} />
 					</span>
 
-					<p>currently playing - Missão possível</p>
+					{/* TODO: change to show the current */}
+					{/* <p>currently playing - Missão possível</p> */}
 				</section>
 
 				<div className="buttons">

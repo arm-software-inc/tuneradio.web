@@ -1,14 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Station, getTrendingStations } from "../../services/station";
 import Player from "../../components/Player/Player";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { HomeStyle } from "./style";
 import Card from "../../components/Card/Card";
 import Carousel from "../../components/Carousel/Carousel";
-import React from "react";
+import Tag from "../../components/Tag/Tag";
+import { getAllTags, type Tag as TagType } from "../../services/tags";
 
 function Home() {
 	const [stations, setStations] = useState<Station[]>([]);
+
+	const [tags, setTags] = useState<TagType[]>([]);
 
 	const { setStation } = useContext(PlayerContext);
 
@@ -19,6 +22,12 @@ function Home() {
 			setStations(res);
 		});
 	}, [setStation]);
+
+	useEffect(() => {
+		getAllTags().then((res) => {
+			setTags(res.slice(0, 6));
+		})
+	}, [setTags]);
 
 	return (
 		<HomeStyle>
@@ -33,6 +42,16 @@ function Home() {
 						</React.Fragment>
 					)) }
 				</Carousel>
+			</section>
+
+			<section>
+				<h2>Find your genre</h2>
+
+				<div className="tags">
+					{ tags.map((tag) => (
+						<Tag key={tag.id} name={tag.name} />
+					)) }
+				</div>
 			</section>
 
 			<Player />
