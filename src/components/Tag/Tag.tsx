@@ -1,11 +1,15 @@
-import { randomColor } from "../../helpers/randomColor";
+import { useNavigate } from "react-router-dom";
 import { TagStyle } from "./style";
 
-function Tag({ name } : { name: string}) {
-	const color = randomColor();
+function Tag({ name, color } : { name: string, color: string }) {
+	const navigate = useNavigate();
+
+	const handleClick = () => {
+		navigate(`/tag/${name}`);
+	};
 
 	return (
-		<TagStyle color={color}>
+		<TagStyle color={color} onClick={handleClick}>
 			<strong>{name}</strong>
 		</TagStyle>
 	);

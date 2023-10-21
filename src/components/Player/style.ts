@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const PlayerStyle = styled.div`
 	position: sticky;
+	left: 0;
+	right: 0;
 	bottom: 1rem;
-	right: 1rem;
-	left: 1rem;
 
 	.container {
 		position: relative;

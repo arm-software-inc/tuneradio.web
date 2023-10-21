@@ -16,7 +16,8 @@ export interface Station {
 }
 
 export const getAllStations = async (): Promise<Station[]> => {
-	return await API.get('/station');
+	const response = await API.get('/station');
+	return response.data.data;
 };
 
 export const getTrendingStations = async (): Promise<Station[]> => {
@@ -28,8 +29,10 @@ export const getPopularStations = async (): Promise<Station[]> => {
 	return await API.get('/station/popular');
 };
 
+// TODO: change `category` by `tag`
 export const getStationsByCategory = async (category: string): Promise<Station[]> => {
-	return await API.get(`/station/category?category=${category}`);
+	const response = await API.get(`/station/category?c=${category}`);
+	return response.data.data;
 };
 
 export const getStationById = async (id: string): Promise<Station> => {

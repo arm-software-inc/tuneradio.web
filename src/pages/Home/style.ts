@@ -4,6 +4,13 @@ export const HomeStyle = styled.main`
 	height: 100vh;
 	padding: 1rem;
 
+	display: flex;
+	flex-direction: column;
+
+	.content {
+		flex: 1;
+	}
+
 	h2 {
 		font-weight: 500;
 		padding: 0.8rem 0;

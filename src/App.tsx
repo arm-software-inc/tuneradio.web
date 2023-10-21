@@ -9,13 +9,16 @@ import Home from './pages/Home/Home';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import { PlayerProvider } from './contexts/PlayerContext';
+import Tag from './pages/Tag/Tag';
+import { getStationsByCategory } from './services/station';
 
-
-// TODO: create a router file
 const router = createBrowserRouter([
 	{ path: '/', element: <Home /> },
 	{ path: '/signin', element: <SignIn /> },
-	{ path: '/signup', element: <SignUp /> }
+	{ path: '/signup', element: <SignUp /> },
+	{ path: '/tag/:name', element: <Tag />, loader: async ({ params }) => {
+		return { name: params.name, stations: await getStationsByCategory(params.name ?? '')} }
+	}
 ]);
 
 function App() {

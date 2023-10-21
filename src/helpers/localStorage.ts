@@ -1,4 +1,4 @@
-type LocalStorageItems = 'token';
+type LocalStorageItems = 'token' | 'lastStation';
 
 export function getItem (itemName: LocalStorageItems): string | null {
 	return localStorage.getItem(itemName);

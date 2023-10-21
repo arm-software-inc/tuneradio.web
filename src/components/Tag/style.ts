@@ -9,7 +9,7 @@ export const TagStyle = styled.div<{ color: string }>`
 	padding: 0.5rem;
 
 	text-align: center;
-
+	cursor: pointer;
 
 	font-family: 'Inter', sans-serif;
 	font-size: 1.125rem;
