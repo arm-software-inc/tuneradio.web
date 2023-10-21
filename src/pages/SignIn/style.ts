@@ -6,7 +6,9 @@ export const SignInStyle = styled.main`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
+
+	padding-top: 2rem;
 
 	height: 100vh;
 	gap: 2rem;
@@ -16,17 +18,24 @@ export const SignInStyle = styled.main`
 		text-align: center;
 		position: relative;
 
-		svg {
-			position: absolute;
-			bottom: 4rem;
-			left: 6rem;
+		svg	{
+			z-index: 2;
+		}
+
+		h1 {
+			font-family: 'Kodchasan', sans-serif;
+			font-size: 3rem;
 		}
 
 		> div {
+			position: absolute;
+			bottom: 0;
+			z-index: -1;
+
 			width: 100%;
 			background: ${({ theme }) => theme.colors.yellow};
 
-			padding: 3rem 0 0 0;
+			padding: 6rem 0 0 0;
 
 			display: flex;
 			flex-direction: column;
@@ -39,11 +48,6 @@ export const SignInStyle = styled.main`
 				height: 4px;
 				display: block;
 				background: ${({ theme }) => theme.colors.black};
-			}
-
-			h1 {
-				font-family: 'Kodchasan', sans-serif;
-				font-size: 3rem;
 			}
 		}
 	}
@@ -92,7 +96,7 @@ export const SignInStyle = styled.main`
 		}
 	}
 
-	.helpful-links {
+	.footer-helpful-links {
 		.separator {
 			background: ${({theme}) => theme.colors.black};
 			width: 100%;
@@ -103,7 +107,7 @@ export const SignInStyle = styled.main`
 		}
 
 		width: 100%;
-		padding: 0 2rem;
+		padding: 0 2rem 2rem 2rem;
 
 		a {
 			display: block;

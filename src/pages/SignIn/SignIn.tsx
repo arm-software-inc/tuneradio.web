@@ -37,10 +37,9 @@ function SignIn() {
 		<SignInStyle>
 			<section className="logo">
 				<LogoSvg />
+				<h1>radião</h1>
 
-				<div>
-					<h1>radião</h1>
-				</div>
+				<div></div>
 			</section>
 
 			<form onSubmit={handleSubmit(submit)}>
@@ -88,7 +87,7 @@ function SignIn() {
 				</Button> */}
 			</form>
 
-			<footer className="helpful-links">
+			<footer className="footer-helpful-links">
 				<hr className="separator" />
 
 				<Link to="/signup">Dont have an account? Sign up</Link>
