@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Station, getTrendingStations } from "../../services/station";
-import Player from "../../components/Player/Player";
+// import Player from "../../components/Player/Player";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { HomeStyle } from "./style";
 import Card from "../../components/Card/Card";
@@ -8,6 +8,7 @@ import Carousel from "../../components/Carousel/Carousel";
 import Tag from "../../components/Tag/Tag";
 import { getAllTags, type Tag as TagType } from "../../services/tags";
 import { randomColor } from "../../helpers/randomColor";
+import NewPlayer from "../../components/Player/NewPlayer";
 
 function Home() {
 	const [stations, setStations] = useState<Station[]>([]);
@@ -55,7 +56,8 @@ function Home() {
 				</section>
 			</div>
 
-			<Player />
+			<NewPlayer />
+			{/* <Player /> */}
 		</HomeStyle>
 	)
 }

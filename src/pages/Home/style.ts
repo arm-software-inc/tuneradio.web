@@ -22,4 +22,13 @@ export const HomeStyle = styled.main`
 		grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
 		padding-bottom: 2rem;
 	}
+
+	/* 320px (mobile)
+	768px (tablet)
+	1024px (small desktop)
+	1440px (large desktop) */
+
+	/* @media screen and (min-width: 1024px) {
+		background: red;
+	} */
 `;
