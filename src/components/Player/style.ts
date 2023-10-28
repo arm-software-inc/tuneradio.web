@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const PlayerStyle = styled.div`
 	position: sticky;
-	left: 0;
-	right: 0;
 	bottom: 1rem;
+	align-self: flex-start;
+
+	.sound-animation {
+		display: none;
+	}
 
 	.container {
 		position: relative;
@@ -89,6 +92,17 @@ export const PlayerStyle = styled.div`
 
 		.play-pause-button {
 			margin-right: 0.5rem;
+		}
+	}
+
+	@media screen and (min-width: 1024px) {
+		.container {
+			.sound-animation {
+				display: block;
+			}
+
+			display: flex;
+			grid-template-columns: repeat(3, 1fr)
 		}
 	}
 `;

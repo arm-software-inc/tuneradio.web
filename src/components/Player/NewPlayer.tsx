@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { PlayerContext } from "../../contexts/PlayerContext";
-import { PlayerStyle } from "./style";
+import { NewPlayerStyle } from "./new-style";
 import { PlayerState } from "./types";
 import ReactCountryFlag from "react-country-flag";
 import { getItem } from "../../helpers/localStorage";
 import { getTrendingStations } from "../../services/station";
 
-function Player() {
+function NewPlayer() {
 	const { station, setStation } = useContext(PlayerContext);
 
 	const audio = React.useRef<HTMLAudioElement>(null);
@@ -42,27 +42,47 @@ function Player() {
 	}, [station]);
 
 	return station ? (
-		<PlayerStyle>
+		<NewPlayerStyle>
 			<div className="container">
 				<p className="sound-animation">animation</p>
 
-				<div className="logo">
-					<img src={station.favicon === '' ? '/missing-radio.jpeg' : station.favicon} alt={`${station.name} logo`} />
+				<div className="controls">
+					<div className="logo">
+						<img src={station.favicon === '' ? '/missing-radio.jpeg' : station.favicon} alt={`${station.name} logo`} />
+					</div>
+
+					<section className="info">
+						<span>
+							<h3>{station.name}</h3>
+							<ReactCountryFlag countryCode={station.countryCode} style={{ fontSize: '1rem' }} />
+						</span>
+
+						{/* TODO: change to show the current show */}
+						{/* <p>currently playing - Missão possível</p> */}
+					</section>
+
+					<div className="buttons">
+						<button type="button" className="like-button">
+							<img src="/icons/heart-filled.svg" alt="Heart icon for like button" />
+						</button>
+					</div>
 				</div>
 
-				<section className="info">
-					<span>
-						<h3>{station.name}</h3>
-						<ReactCountryFlag countryCode={station.countryCode} style={{ fontSize: '1rem' }} />
-					</span>
+				<div className="more-buttons">
+					<button className="play-pause-button" type="button" onClick={toggleState}>
+						{
+							playerState === 'paused'
+							? <img src="/icons/play.svg" alt="play button" />
+							: <img src="/icons/pause.svg" alt="pause button" />
+						}
+					</button>
 
-					{/* TODO: change to show the current show */}
-					{/* <p>currently playing - Missão possível</p> */}
-				</section>
-
-				<div className="buttons">
-					<button type="button" className="like-button">
-						<img src="/icons/heart-filled.svg" alt="Heart icon for like button" />
+					<button className="play-pause-button" type="button" onClick={toggleState}>
+						{
+							playerState === 'paused'
+							? <img src="/icons/play.svg" alt="play button" />
+							: <img src="/icons/pause.svg" alt="pause button" />
+						}
 					</button>
 
 					<button className="play-pause-button" type="button" onClick={toggleState}>
@@ -73,11 +93,13 @@ function Player() {
 						}
 					</button>
 				</div>
+
+
 				<audio src={station.url} ref={audio}></audio>
 			</div>
-		</PlayerStyle>
+		</NewPlayerStyle>
 	)
 	: null
 }
 
-export default Player;
+export default NewPlayer;
